@@ -1,0 +1,36 @@
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Install necessary system libraries
+RUN apt-get update && apt-get install -y \
+    libatlas-base-dev \
+    libhdf5-dev \
+    libhdf5-serial-dev \
+    libjpeg-dev \
+    libopencv-dev \
+    libqtgui4 \
+    libqt4-test \
+    libavformat-dev \
+    libswscale-dev \
+    libv4l-dev \
+    libilmbase23 \
+    libopenexr23 \
+    libgstreamer1.0-0 \
+    libgstreamer-plugins-base1.0-0 \
+    v4l-utils \
+    python3-pip \
+    python3-pyqt5 \
+    python3-pyqt5.qtopengl \
+    python3-opengl
+
+# Install picamera2
+RUN pip install picamera2
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Run the application
+CMD ["python", "your_script.py"]
