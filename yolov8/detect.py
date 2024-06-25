@@ -34,22 +34,22 @@ try:
     while True:
         frame = picam2.capture_array()
 
-        results_c = model_custom(frame)
-        # results_d = model_default(frame)
+        # results_c = model_custom(frame)
+        results_d = model_default(frame)
         os.system("clear")
-        # annotated_frame = results_c[0].plot()
+        annotated_frame = results_d[0].plot()
         try:
-            result_c = extract(results_c[0])
-            # result_d = extract(results_d[0])
-            for r in result_c:
-                print(f"{r[0]}: {r[1]}")
-            # for r in result_d:
+            # result_c = extract(results_c[0])
+            result_d = extract(results_d[0])
+            # for r in result_c:
             #     print(f"{r[0]}: {r[1]}")
+            for r in result_d:
+                print(f"{r[0]}: {r[1]}")
         except:
             pass
-    #     cv2.imshow("Camera", annotated_frame)
-    #     if cv2.waitKey(1) == ord("q"):
-    #         break
-    # cv2.destroyAllWindows()
+        cv2.imshow("Camera", annotated_frame)
+        if cv2.waitKey(1) == ord("q"):
+            break
+    cv2.destroyAllWindows()
 except KeyboardInterrupt:
     os.system("clear")
