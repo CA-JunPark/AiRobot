@@ -1,10 +1,13 @@
-from picamera2 import Picamera2, Preview
-import time
-picam2 = Picamera2()
-camera_config = picam2.create_preview_configuration()
-picam2.configure(camera_config)
-picam2.start_preview(Preview.QTGL)
-picam2.start()
-time.sleep(2)
-picam2.capture_file("test.jpg")
-picam2.close()
+from picamera2 import Picamera2
+from time import sleep
+
+def main():
+    camera = Picamera2()
+    camera.start()
+    sleep(2)  # Give the camera some time to adjust
+    camera.capture_file("/tmp/test_image.jpg")
+    camera.stop()
+    print("Photo saved as /tmp/test_image.jpg")
+
+if __name__ == "__main__":
+    main()

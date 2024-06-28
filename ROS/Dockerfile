@@ -7,27 +7,27 @@ RUN apt-get update
 RUN apt-get upgrade -y
 #   enable universe and multiverse repositories
 RUN apt-get install software-properties-common -y
-RUN add-apt-repository universe multiverse -y
+RUN add-apt-repository main universe restricted multiverse -y
 
 # install ROS2 packages
 RUN apt-get update
-RUN apt-get install ros-humble-desktop -y
+RUN apt-get install ros-humble-desktop-full -y
 RUN apt-get install ros-humble-rplidar-ros -y
 RUN apt-get install ros-humble-cartographer -y
-
-# install build tools
-RUN apt-get update
-RUN apt-get install build-essential libcap* libcamera* build-essential meson ninja-build libyaml-dev python3-yaml python3-ply python3-jinja2 libssl-dev openssl git -y
-# install libcamera for picamera2
-
-
 
 # install python packages
 #   install system dependencies
 RUN apt-get update
 RUN apt-get install python3 python3-pip python3-venv python3-dev python3-rpi.gpio -y
 #   install pip packages
-RUN pip install rpi-lgpio gpiozero rplidar-roboticia ultralytics picamera2
+# 	GPIO
+RUN pip install rpi-lgpio gpiozero
+# 	sensors
+RUN pip install rplidar-roboticia
+# 	YOLO
+RUN pip install ultralytics
+# 	Adafruit
+RUN pip install adafruit-blinka adafruit-mcp4725
 
 
 # create a non-root user so volume files are accessible outside container
