@@ -13,7 +13,9 @@ RUN add-apt-repository main universe restricted multiverse -y
 RUN apt-get update
 RUN apt-get install ros-humble-desktop-full -y
 RUN apt-get install ros-humble-rplidar-ros -y
-RUN apt-get install ros-humble-cartographer -y
+RUN apt-get install ros-humble-cartographer-ros -y
+RUN apt-get install ros-humble-cartographer-rviz -y
+RUN apt-get install ros-humble-turtlebot4-desktop -y
 
 # install python packages
 #   install system dependencies
